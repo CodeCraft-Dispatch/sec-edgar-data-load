@@ -1,1 +1,1 @@
-warn = ["clippy::all", "clippy::pedantic"]
+warns = ["clippy::all", "clippy::pedantic"]
