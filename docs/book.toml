@@ -1,0 +1,9 @@
+[book]
+title = "Financial Analytics Platform"
+author = "Caleb McElrath"
+
+[build]
+build-dir = "book"
+
+[output.html]
+preferred-dark-theme = "coal"

@@ -1,0 +1,3 @@
+[app]
+port = 80
+database_url = "${{ secrets.DATABASE_URL }}"

@@ -1,0 +1,18 @@
+name: Acceptance Tests
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  acceptance:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with: { toolchain: stable }
+      - name: Run acceptance tests
+        run: cargo test --test acceptance -- --ignored

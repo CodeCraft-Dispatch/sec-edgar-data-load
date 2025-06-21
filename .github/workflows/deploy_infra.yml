@@ -1,0 +1,21 @@
+name: Deploy Infrastructure
+
+on:
+  push:
+    paths:
+      - 'infra/bicep/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy Bicep
+        run: |
+          az deployment group create \
+            --resource-group ${{ secrets.RESOURCE_GROUP }} \
+            --template-file infra/bicep/main.bicep \
+            --parameters @infra/bicep/parameters.json

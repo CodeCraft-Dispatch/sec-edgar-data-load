@@ -1,0 +1,16 @@
+name: Performance Benchmarks
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # daily at 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with: { toolchain: stable }
+      - name: Run benchmarks
+        run: cargo bench
